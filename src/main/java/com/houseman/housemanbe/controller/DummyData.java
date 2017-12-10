@@ -52,20 +52,20 @@ public class DummyData extends AbstractRestController<AbstractDTO> {
     public  @ApiResponseObject ResponseWrapperDTO listUsers() {
         List<UserDTO> result =  userRepository.findAll();
         ResponseMessage message = new ResponseMessage("Success!", Constants.MessageType.SUCCSESS.getName());
-        return new ResponseWrapperDTO(result,0, Arrays.asList(message),false);
+        return new ResponseWrapperDTO(result,Arrays.asList(message),false);
     }
 
     @RequestMapping("/organizations")
-    public List<OrganizationDTO> listOrganizations() {return organizationRepository.findAll();}
+    public ResponseWrapperDTO listOrganizations() {return new ResponseWrapperDTO(organizationRepository.findAll());}
 
     @RequestMapping("/projects")
-    public List<ProjectDTO> listProjects() {return projectRepository.findAll();}
+    public ResponseWrapperDTO listProjects() {return new ResponseWrapperDTO(projectRepository.findAll());}
 
     @RequestMapping("/tasks")
-    public List<TaskDTO> listTasks() {return taskRepository.findAll();}
+    public ResponseWrapperDTO listTasks() {return new ResponseWrapperDTO(taskRepository.findAll());}
 
     @RequestMapping("/taskStatuses")
-    public List<TaskStatusDTO> listTaskStatuses() {return taskStatusRepository.findAll();}
+    public ResponseWrapperDTO listTaskStatuses() {return new ResponseWrapperDTO(taskStatusRepository.findAll());}
 
     @Override
     protected Map<String, ValidationErrorMessage> validateLogicRules(AbstractDTO value, Class... validationGroups) {
