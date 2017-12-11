@@ -8,4 +8,6 @@ import java.util.List;
 public interface UserRepository extends CrudRepository<UserDTO, Long>{
 
     List<UserDTO> findAll();
+
+    UserDTO findByEmail(String email);
 }
