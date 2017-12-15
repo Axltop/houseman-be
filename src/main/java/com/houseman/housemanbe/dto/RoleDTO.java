@@ -19,8 +19,8 @@ public class RoleDTO extends AbstractDTO {
     @Column(name = "role_name", unique = true, nullable = false)
     private String role;
 
-//    @ManyToMany(mappedBy = "roles")
-//    private Set<UserDTO> users = new HashSet<UserDTO>();
+    @ManyToMany(mappedBy = "roles")
+    private Set<UserDTO> users = new HashSet<UserDTO>();
 
     private RoleDTO(){};
 
