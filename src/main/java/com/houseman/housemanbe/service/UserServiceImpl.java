@@ -1,42 +1,38 @@
 package com.houseman.housemanbe.service;
 
-import com.houseman.housemanbe.dto.RoleDTO;
-import com.houseman.housemanbe.dto.UserDTO;
+import com.houseman.housemanbe.model.Role;
+import com.houseman.housemanbe.model.User;
+import com.houseman.housemanbe.repository.RoleRepository;
 import com.houseman.housemanbe.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Set;
 
-public class UserServiceImpl implements UserService, UserDetailsService{
+@Service("userService")
+public class UserServiceImpl implements UserService{
 
-    private UserRepository userRepository;
-
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+    private RoleRepository roleRepository;
     @Autowired
-    public UserServiceImpl(UserRepository userRepository){
-        this.userRepository = userRepository;
-    }
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Override
+	public User findUserByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
 
+	@Override
+	public void saveUser(User user) {
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setActive(1);
+        Role userRole = roleRepository.findByRole("ADMIN");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+		userRepository.save(user);
+	}
 
-    @Override
-    public UserDTO findByEmail(String email){
-        return userRepository.findByEmail(email);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-        UserDTO user = findByEmail(username);
-
-        if( user == null) {
-            throw new UsernameNotFoundException(username);
-        }
-
-        return new UserDetailsImpl(user);
-    }
 }

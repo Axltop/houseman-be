@@ -1,13 +1,10 @@
 package com.houseman.housemanbe.repository;
 
-import com.houseman.housemanbe.dto.UserDTO;
-import org.springframework.data.repository.CrudRepository;
+import com.houseman.housemanbe.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-public interface UserRepository extends CrudRepository<UserDTO, Long>{
-
-    List<UserDTO> findAll();
-
-    UserDTO findByEmail(String email);
+@Repository("userRepository")
+public interface UserRepository extends JpaRepository<User, Long> {
+	 User findByEmail(String email);
 }

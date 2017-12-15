@@ -20,7 +20,7 @@ public class TaskDTO extends AbstractDTO {
     private String description;
 
     @Column(name = "task_project_id")
-    private int project;
+    private Long project;
 
     @OneToOne
     @JoinColumn(name =  "task_status_id")
