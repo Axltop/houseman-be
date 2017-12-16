@@ -15,8 +15,8 @@ public class Role {
 	@Column(name = "role_id" , unique = true, nullable = false)
 	private int id;
 
-	@Column(name="role")
-	private String role;
+	@Column(name="role_name")
+	private String roleName;
 
 	@ManyToMany(mappedBy = "roles")
 	private Set<User> users = new HashSet<User>();
@@ -27,11 +27,11 @@ public class Role {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getRole() {
-		return role;
+	public String getRoleName() {
+		return roleName;
 	}
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 	
 	
