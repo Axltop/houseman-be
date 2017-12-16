@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.dto;
+package com.houseman.housemanbe.model;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "task_statuses")
-public class TaskStatusDTO extends AbstractDTO {
+public class TaskStatus extends AbstractModel {
 
     @Id
     @GeneratedValue
@@ -19,6 +19,6 @@ public class TaskStatusDTO extends AbstractDTO {
     @Column(name="task_status_description")
     private String description;
 
-    public TaskStatusDTO() {
+    public TaskStatus() {
     }
 }

@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.dto;
+package com.houseman.housemanbe.model;
 
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name = "projects")
-public class ProjectDTO extends AbstractDTO {
+public class Project extends AbstractModel {
 
     @Id
     @GeneratedValue
@@ -28,11 +28,11 @@ public class ProjectDTO extends AbstractDTO {
             joinColumns = {@JoinColumn(name = "project_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
-    private Set<UserDTO> watchers = new HashSet<UserDTO>();
+    private Set<User> watchers = new HashSet<User>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "project",cascade = CascadeType.ALL)
-    private Set<TaskDTO> tasks = new HashSet<>();
+    private Set<Task> tasks = new HashSet<>();
 
-    public ProjectDTO() {
+    public Project() {
     }
 }

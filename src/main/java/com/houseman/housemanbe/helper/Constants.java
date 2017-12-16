@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.helpers;
+package com.houseman.housemanbe.helper;
 
 public final class Constants {
 

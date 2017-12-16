@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.dto;
+package com.houseman.housemanbe.model;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "transaction_statuses")
-public class TransactionStatusDTO {
+public class TransactionStatus {
 
     @Id
     @GeneratedValue
@@ -17,6 +17,6 @@ public class TransactionStatusDTO {
     @Column(name= "transaction_status_name", unique = true, nullable = false)
     private String name;
 
-    public TransactionStatusDTO() {
+    public TransactionStatus() {
     }
 }

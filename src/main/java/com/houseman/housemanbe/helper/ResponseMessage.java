@@ -1,7 +1,6 @@
-package com.houseman.housemanbe.helpers;
+package com.houseman.housemanbe.helper;
 
 import lombok.Data;
-import com.houseman.housemanbe.helpers.Constants.MessageType;
 
 @Data
 

@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.dto;
+package com.houseman.housemanbe.model;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "tasks")
-public class TaskDTO extends AbstractDTO {
+public class Task extends AbstractModel {
 
     @Id
     @GeneratedValue
@@ -24,12 +24,12 @@ public class TaskDTO extends AbstractDTO {
 
     @OneToOne
     @JoinColumn(name =  "task_status_id")
-    private TaskStatusDTO taskStatus;
+    private TaskStatus taskStatus;
 
     @OneToOne
     @JoinColumn(name="assigned_to")
-    private UserDTO assignedTo;
+    private User assignedTo;
 
-    public TaskDTO() {
+    public Task() {
     }
 }

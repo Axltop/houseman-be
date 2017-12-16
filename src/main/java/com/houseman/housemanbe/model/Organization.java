@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.dto;
+package com.houseman.housemanbe.model;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "organizations")
-public class OrganizationDTO {
+public class Organization {
 
     @Id
     @GeneratedValue
@@ -17,6 +17,6 @@ public class OrganizationDTO {
     @Column(name = "organization_name",  unique = true, nullable = true)
     private String name;
 
-    public OrganizationDTO() {
+    public Organization() {
     }
 }

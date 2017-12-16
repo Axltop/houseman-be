@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.dto;
+package com.houseman.housemanbe.model;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name = "transaction_items")
-public class TransactionItemDTO extends AbstractDTO {
+public class TransactionItem extends AbstractModel {
 
     @Id
     @GeneratedValue
@@ -19,14 +19,14 @@ public class TransactionItemDTO extends AbstractDTO {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transaction_id")
-    private TransactionDTO transact;
+    private Transaction transact;
 
     @Column(name = "amount")
     private BigDecimal amount;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "currency_name")
-    private CurrencyDTO currency;
+    private Currency currency;
 
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -35,6 +35,6 @@ public class TransactionItemDTO extends AbstractDTO {
             joinColumns = {@JoinColumn(name = "expense_item_id")},
             inverseJoinColumns = {@JoinColumn(name = "expense_item_category_id")}
     )
-    private Set<TransactionItemCategoryDTO> categories = new HashSet<TransactionItemCategoryDTO>();
+    private Set<TransactionItemCategory> categories = new HashSet<TransactionItemCategory>();
 
 }

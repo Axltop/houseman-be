@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.errors;
+package com.houseman.housemanbe.error;
 
 import lombok.Data;
 

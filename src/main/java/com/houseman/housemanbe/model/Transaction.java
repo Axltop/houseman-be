@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.dto;
+package com.houseman.housemanbe.model;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name="transactions")
-public class TransactionDTO extends TransactionAbstract {
+public class Transaction extends AbstractModel {
 
     @Id
     @GeneratedValue
@@ -16,7 +16,7 @@ public class TransactionDTO extends TransactionAbstract {
 
 
 
-    public TransactionDTO() {
+    public Transaction() {
     }
 
 }

@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.dto;
+package com.houseman.housemanbe.model;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "transaction_item_categories")
-public class TransactionItemCategoryDTO extends AbstractDTO{
+public class TransactionItemCategory extends AbstractModel {
 
     @Id
     @GeneratedValue
@@ -20,7 +20,7 @@ public class TransactionItemCategoryDTO extends AbstractDTO{
     @Column(name = "transaction_item_category_description")
     private String description;
 
-    public TransactionItemCategoryDTO() {
+    public TransactionItemCategory() {
 
     }
 }

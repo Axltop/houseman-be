@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.dto;
+package com.houseman.housemanbe.model;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "transaction_types")
-public class TransactionTypeDTO {
+public class TransactionType {
 
     @Id
     @GeneratedValue

@@ -1,13 +1,13 @@
-package com.houseman.housemanbe.errors;
+package com.houseman.housemanbe.error;
 
-import com.houseman.housemanbe.dto.AbstractDTO;
+import com.houseman.housemanbe.model.AbstractModel;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Path;
 import javax.validation.metadata.ConstraintDescriptor;
 
-public class LogicRuleViolation<T extends AbstractDTO> implements ConstraintViolation<T> {
+public class LogicRuleViolation<T extends AbstractModel> implements ConstraintViolation<T> {
     private String message;
     private Path fieldPath;
     private Object invalidValue;

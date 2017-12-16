@@ -1,4 +1,4 @@
-package com.houseman.housemanbe.dto;
+package com.houseman.housemanbe.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AbstractDTO implements Serializable {
+public class AbstractModel implements Serializable {
 
     @JsonIgnore
     private static final long serialVersionUID = 3727265298538872080L;
