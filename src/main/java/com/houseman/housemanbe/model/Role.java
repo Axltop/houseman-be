@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name = "roles")
-public class Role {
+public class Role extends AbstractModel{
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "role_id" , unique = true, nullable = false)
@@ -18,8 +18,8 @@ public class Role {
 	@Column(name="role_name")
 	private String roleName;
 
-	@ManyToMany(mappedBy = "roles")
-	private Set<User> users = new HashSet<User>();
+//	@ManyToMany(mappedBy = "roles")
+//	private Set<User> users = new HashSet<User>();
 
 	public int getId() {
 		return id;
