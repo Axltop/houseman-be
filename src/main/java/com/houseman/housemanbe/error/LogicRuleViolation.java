@@ -8,6 +8,7 @@ import javax.validation.Path;
 import javax.validation.metadata.ConstraintDescriptor;
 
 public class LogicRuleViolation<T extends AbstractModel> implements ConstraintViolation<T> {
+
     private String message;
     private Path fieldPath;
     private Object invalidValue;

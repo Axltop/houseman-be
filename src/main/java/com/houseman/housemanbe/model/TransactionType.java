@@ -1,10 +1,7 @@
 package com.houseman.housemanbe.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
-@Data
 @Entity
 @Table(name = "transaction_types")
 public class TransactionType {
@@ -17,5 +14,15 @@ public class TransactionType {
     @Column(name = "transaction_type_name", unique = true)
     private String name;
 
+    public TransactionType(String name) {
+        this.name = name;
+    }
 
+    @Override
+    public String toString() {
+        return "TransactionType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

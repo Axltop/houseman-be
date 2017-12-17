@@ -1,11 +1,8 @@
 package com.houseman.housemanbe.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
-@Data
 @Table(name = "transaction_item_categories")
 public class TransactionItemCategory extends AbstractModel {
 
@@ -20,7 +17,17 @@ public class TransactionItemCategory extends AbstractModel {
     @Column(name = "transaction_item_category_description")
     private String description;
 
-    public TransactionItemCategory() {
+    public TransactionItemCategory(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
+    @Override
+    public String toString() {
+        return "TransactionItemCategory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

@@ -1,13 +1,10 @@
 package com.houseman.housemanbe.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
-@Data
 @Table(name = "organizations")
-public class Organization {
+public class Organization extends AbstractModel {
 
     @Id
     @GeneratedValue
@@ -17,6 +14,26 @@ public class Organization {
     @Column(name = "organization_name")
     private String name;
 
-    public Organization() {
+    public Organization(){
+    }
+
+    public Organization(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Organization{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
