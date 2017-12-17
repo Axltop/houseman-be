@@ -1,5 +1,6 @@
 package com.houseman.housemanbe.controller;
 
+import com.houseman.housemanbe.model.ResponseWrapper;
 import com.houseman.housemanbe.model.User;
 import com.houseman.housemanbe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class LoginController {
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
-	
-	
+
+
 	@RequestMapping(value="/registration", method = RequestMethod.GET)
 	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
