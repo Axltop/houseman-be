@@ -1,14 +1,11 @@
 package com.houseman.housemanbe.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
 @Table(name = "transaction_items")
 public class TransactionItem extends AbstractModel {
 
@@ -37,4 +34,24 @@ public class TransactionItem extends AbstractModel {
     )
     private Set<TransactionItemCategory> categories = new HashSet<TransactionItemCategory>();
 
+    public TransactionItem(){
+    }
+
+    public TransactionItem(Transaction transact, BigDecimal amount, Currency currency, Set<TransactionItemCategory> categories) {
+        this.transact = transact;
+        this.amount = amount;
+        this.currency = currency;
+        this.categories = categories;
+    }
+
+    @Override
+    public String toString() {
+        return "TransactionItem{" +
+                "id=" + id +
+                ", transact=" + transact +
+                ", amount=" + amount +
+                ", currency=" + currency +
+                ", categories=" + categories +
+                '}';
+    }
 }

@@ -1,13 +1,8 @@
 package com.houseman.housemanbe.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Data
 @Table(name = "roles")
 public class Role extends AbstractModel{
 	@Id
@@ -21,18 +16,25 @@ public class Role extends AbstractModel{
 //	@ManyToMany(mappedBy = "roles")
 //	private Set<User> users = new HashSet<User>();
 
-	public int getId() {
-		return id;
+	public Role(){}
+
+	public Role(String roleName) {
+		this.roleName = roleName;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public String getRoleName() {
 		return roleName;
 	}
+
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Role{" +
+				"id=" + id +
+				", roleName='" + roleName + '\'' +
+				'}';
+	}
 }
