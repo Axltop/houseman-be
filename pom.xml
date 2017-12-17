@@ -6,7 +6,7 @@
 	<groupId>com.houseman</groupId>
 	<artifactId>houseman-be</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>houseman-be</name>
 	<description>HouseMan </description>
@@ -109,11 +109,11 @@
 	        <artifactId>jsondoc-ui-webjar</artifactId>
 	        <version>1.2.18</version>
 		</dependency>
-		<!-- <dependency>
+		 <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
-		</dependency>-->
+		</dependency>
 		<dependency>
 			<groupId>org.jsondoc</groupId>
 			<artifactId>jsondoc-core</artifactId>

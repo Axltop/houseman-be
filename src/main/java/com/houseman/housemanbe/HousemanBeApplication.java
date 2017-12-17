@@ -9,16 +9,16 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 @EnableJSONDoc
-//public class HousemanBeApplication extends SpringBootServletInitializer {
-public class HousemanBeApplication{
+public class HousemanBeApplication extends SpringBootServletInitializer {
+//public class HousemanBeApplication{
 
 
 	public static void main(String[] args) {
 		SpringApplication.run(HousemanBeApplication.class, args);
 	}
 
-//	@Override
-//	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder){
-//		return builder.sources(HousemanBeApplication.class);
-//	}
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder){
+		return builder.sources(HousemanBeApplication.class);
+	}
 }
