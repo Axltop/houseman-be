@@ -28,17 +28,6 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    @ApiMethod(description = "Get Organization projects")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public @ApiResponseObject ResponseWrapper getProjects(@RequestParam("organization") Long organization) {
-
-        List<Project> projects = projectService.getAll(organization);
-
-        ResponseMessage message = new ResponseMessage("Success!","success");
-
-        return new ResponseWrapper(projects, Arrays.asList(message),false);
-    }
-
     @ApiMethod(description = "Save project")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public @ApiResponseObject ResponseWrapper saveProject(Project project) {
@@ -50,9 +39,20 @@ public class ProjectController {
         return new ResponseWrapper(project, Arrays.asList(message),false);
     }
 
+    @ApiMethod(description = "Get Organization projects")
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public @ApiResponseObject ResponseWrapper getProjects(@RequestParam("organization") Long organization) {
+
+        List<Project> projects = projectService.getAll(organization);
+
+        ResponseMessage message = new ResponseMessage("Success!","success");
+
+        return new ResponseWrapper(projects, Arrays.asList(message),false);
+    }
+
     @ApiMethod(description = "Get single project")
     @RequestMapping(value = "/{projectId}", method = RequestMethod.GET)
-    public @ApiResponseObject ResponseWrapper saveProject(@PathVariable("projectId") Long projectId) {
+    public @ApiResponseObject ResponseWrapper getProject(@PathVariable("projectId") Long projectId) {
         Project project = projectService.get(projectId);
 
         ResponseMessage message = new ResponseMessage("Success!","success");
