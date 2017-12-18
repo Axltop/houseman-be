@@ -9,11 +9,9 @@ public final class Constants {
         WARNING("warning"),
         INFO("info");
 
-
         private final String name;
 
-
-        private MessageType(String name) {
+        MessageType(String name) {
             this.name = name;
 
         }

@@ -1,11 +1,8 @@
 package com.houseman.housemanbe.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
-@Data
 @Table(name = "transaction_statuses")
 public class TransactionStatus {
 
@@ -17,6 +14,15 @@ public class TransactionStatus {
     @Column(name= "transaction_status_name", unique = true, nullable = false)
     private String name;
 
-    public TransactionStatus() {
+    public TransactionStatus(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "TransactionStatus{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

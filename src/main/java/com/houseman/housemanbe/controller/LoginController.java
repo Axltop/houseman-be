@@ -2,6 +2,7 @@ package com.houseman.housemanbe.controller;
 
 import com.houseman.housemanbe.model.User;
 import com.houseman.housemanbe.service.UserService;
+import org.jsondoc.core.annotation.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,11 +14,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
+@Api(name = "Auhtnetication", description = "Methods for authentication")
 @Controller
 public class LoginController {
-	
-	@Autowired
+
 	private UserService userService;
+
+	@Autowired
+	public LoginController(UserService userService) {
+		this.userService = userService;
+	}
 
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
 	public ModelAndView login(){
@@ -25,18 +31,18 @@ public class LoginController {
 		modelAndView.setViewName("login");
 		return modelAndView;
 	}
-	
-	
-	@RequestMapping(value="/registration", method = RequestMethod.GET)
+
+
+	@RequestMapping(value="/register", method = RequestMethod.GET)
 	public ModelAndView registration(){
 		ModelAndView modelAndView = new ModelAndView();
 		User user = new User();
 		modelAndView.addObject("user", user);
-		modelAndView.setViewName("registration");
+		modelAndView.setViewName("register");
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
 		User userExists = userService.findUserByEmail(user.getEmail());
@@ -46,12 +52,12 @@ public class LoginController {
 							"There is already a user registered with the email provided");
 		}
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("registration");
+			modelAndView.setViewName("register");
 		} else {
 			userService.saveUser(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
-			modelAndView.setViewName("registration");
+			modelAndView.setViewName("register");
 			
 		}
 		return modelAndView;
