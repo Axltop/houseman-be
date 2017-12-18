@@ -17,7 +17,7 @@ public class Task extends AbstractModel {
     @Column(name = "task_description")
     private String description;
 
-    @Column(name = "task_project_id")
+    @Column(name = "task_project_id", nullable = false)
     private Long project;
 
     @OneToOne

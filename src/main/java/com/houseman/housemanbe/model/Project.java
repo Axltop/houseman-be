@@ -8,6 +8,7 @@ import java.util.Set;
 @Table(name = "projects")
 public class Project extends AbstractModel {
 
+
     @Id
     @GeneratedValue
     @Column(name = "project_id", unique = true, nullable = false)
@@ -19,6 +20,13 @@ public class Project extends AbstractModel {
     @Column(name = "project_decsription")
     private String description;
 
+    @JoinColumn(name = "project_organization_id", nullable = false)
+    @ManyToOne()
+    private Organization organization;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project",cascade = CascadeType.ALL)
+    private Set<Task> tasks = new HashSet<>();
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "project_watchers",
@@ -26,13 +34,6 @@ public class Project extends AbstractModel {
             inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
     private Set<User> watchers = new HashSet<User>();
-
-    @JoinColumn(name = "project_organization_id")
-    @ManyToOne()
-    private Organization organization;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project",cascade = CascadeType.ALL)
-    private Set<Task> tasks = new HashSet<>();
 
     public Project() {
     }

@@ -1,0 +1,15 @@
+package com.houseman.housemanbe.repository;
+
+import com.houseman.housemanbe.model.Task;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface TaskRepository extends JpaRepository<Task, Long> {
+
+    List<Task> findAllByProject(Long projectId);
+
+    Task getById(Long id);
+}
