@@ -8,6 +8,7 @@ import java.util.Set;
 @Table(name = "projects")
 public class Project extends AbstractModel {
 
+
     @Id
     @GeneratedValue
     @Column(name = "project_id", unique = true, nullable = false)
