@@ -6,7 +6,7 @@
 	<groupId>com.houseman</groupId>
 	<artifactId>houseman-be</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+
 
 	<profiles>
 		<profile>
@@ -14,6 +14,7 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
+            <packaging>jar</packaging>
 			<properties>
 				<profile.msg>====== BUILDING USING LOCAL PROFILE ======</profile.msg>
 				<settings.dir>profiles/local/</settings.dir>
@@ -30,6 +31,14 @@
 		</profile>
 		<profile>
 			<id>prod</id>
+            <packaging>war</packaging>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
 			<properties>
 				<profile.msg>====== BUILDING USING PROD PROFILE ======</profile.msg>
 				<settings.dir>profiles/prod/</settings.dir>
@@ -147,11 +156,7 @@
 	        <artifactId>jsondoc-ui-webjar</artifactId>
 	        <version>1.2.18</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
-		</dependency>-->
+
 		<dependency>
 			<groupId>org.jsondoc</groupId>
 			<artifactId>jsondoc-core</artifactId>
