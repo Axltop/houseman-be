@@ -6,7 +6,54 @@
 	<groupId>com.houseman</groupId>
 	<artifactId>houseman-be</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+
+
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+            <packaging>jar</packaging>
+			<properties>
+				<profile.msg>====== BUILDING USING LOCAL PROFILE ======</profile.msg>
+				<settings.dir>profiles/local/</settings.dir>
+				<node.env>local</node.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profile.msg>====== BUILDING USING DEV PROFILE ======</profile.msg>
+				<settings.dir>profiles/dev/</settings.dir>
+				<node.env>development</node.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+            <packaging>war</packaging>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+			<properties>
+				<profile.msg>====== BUILDING USING PROD PROFILE ======</profile.msg>
+				<settings.dir>profiles/prod/</settings.dir>
+				<node.env>production</node.env>
+			</properties>
+		</profile>
+		<profile>
+			<id>demo</id>
+			<properties>
+				<profile.msg>====== BUILDING USING DEMO PROFILE ======</profile.msg>
+				<settings.dir>profiles/demo/</settings.dir>
+				<node.env>demo</node.env>
+			</properties>
+		</profile>
+	</profiles>
 
 	<name>houseman-be</name>
 	<description>HouseMan </description>
@@ -109,11 +156,7 @@
 	        <artifactId>jsondoc-ui-webjar</artifactId>
 	        <version>1.2.18</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
-		</dependency>-->
+
 		<dependency>
 			<groupId>org.jsondoc</groupId>
 			<artifactId>jsondoc-core</artifactId>
@@ -138,6 +181,70 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <files>
+                        <file>src/main/resources/${settings.dir}application.properties</file>
+                    </files>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>4.2.0</version>
+                <configuration>
+                    <url>${spring.datasource.url}</url>
+                    <user>${spring.datasource.username}</user>
+                    <password>${spring.datasource.password}</password>
+                    <table>flyway_schema_version</table>
+                    <locations>
+                        <location>filesystem:src/main/resources/db</location>
+                    </locations>
+                    <validateOnMigrate>false</validateOnMigrate>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.44</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+            </plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>${profile.msg}</echo>
+								<echo>Using ${settings.dir} directory settings</echo>
+								<filter token="BuildFileName" value="${project.build.finalName}.jar" />
+								<copy todir="${project.build.outputDirectory}">
+									<fileset dir="${basedir}/src/main/resources/${settings.dir}" includes="**/*" />
+								</copy>
+								<delete dir="${project.build.outputDirectory}/profiles/" includeEmptyDirs="true" />
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -179,6 +286,4 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
-
 </project>
