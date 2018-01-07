@@ -34,7 +34,7 @@ public class LoginController {
 
 
 	@RequestMapping(value="/register", method = RequestMethod.GET)
-	public ModelAndView registration(){
+	public ModelAndView register(){
 		ModelAndView modelAndView = new ModelAndView();
 		User user = new User();
 		modelAndView.addObject("user", user);
